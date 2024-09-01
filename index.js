@@ -1,18 +1,25 @@
 import express from 'express';
-import { bankRouter } from './bankRouter.js';
+import { clients } from './data/clients.js';
 
 const app = express();
 const port = 5030;
 
-// for parsing application/json
-app.use(express.json({
-    type: 'application/json',
-}));
-// for parsing application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+
+const bank = [];
+
+const names = Object.values(clients).map(clients => clients.name);
+
+app.get('/', (req, res) => {
+    return res.send(`Klientu saskaitos: ${clients.name}`)
+});
+
+app.post('/api/account', (req, res) => {
+
+    return res.send(`Sąskaita sėkmingai sukurta ${Jonas.name}`)
+});
 
 
-app.use('/bank', bankRouter);
+
 
 
 app.get('*', (req, res) => {
